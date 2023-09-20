@@ -1,17 +1,16 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import {commonSlice} from '@/store/slices/CommonSlice'
-
+import { commonSlice } from '@/store/slices/CommonSlice';
 
 const rootReducer = combineReducers({
-  [commonSlice.name]: commonSlice.reducer,
-})
+	[commonSlice.name]: commonSlice.reducer,
+});
 
 export const initStore = () =>
-  configureStore({
-    reducer: rootReducer,
-    devTools: process.env.NODE_ENV !== 'production',
-  })
+	configureStore({
+		reducer: rootReducer,
+		devTools: process.env.NODE_ENV !== 'production',
+	});
 
 type TStore = ReturnType<typeof initStore>
 

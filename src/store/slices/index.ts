@@ -1,1 +1,1 @@
-export * from './CommonSlice'
+export * from './CommonSlice';

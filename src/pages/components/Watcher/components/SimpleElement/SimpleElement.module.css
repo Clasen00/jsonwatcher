@@ -1,0 +1,30 @@
+.json__item {
+    margin-top: 10px;
+    padding-left: 20px;
+    user-select: none;
+}
+
+.json__key {
+    color: darkblue;
+    display: inline;
+}
+
+.json__key::after {
+    content: ": ";
+}
+
+.json__value {
+    display: inline;
+}
+
+.json__value--string {
+    color: green;
+}
+
+.json__value--number {
+    color: blue;
+}
+
+.json__value--boolean {
+    color: red;
+}

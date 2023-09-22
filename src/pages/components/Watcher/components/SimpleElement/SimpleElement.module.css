@@ -28,3 +28,11 @@
 .json__value--boolean {
     color: red;
 }
+
+.visible {
+    display: inline;
+}
+
+.hidden {
+    display: none;
+}

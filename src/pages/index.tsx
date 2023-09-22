@@ -1,10 +1,10 @@
 import { useAppDispatch } from '@/lib/hooks/useAppDispatcher';
 import { setJson } from '@/store/slices/CommonSlice';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import Watcher from '@/pages/components/Watcher';
 import React from 'react';
+import Watcher from '@/pages/components/Watcher/Watcher';
 
-type Json = {
+type TJson = {
   name: object
 }
 
@@ -13,7 +13,7 @@ export const getServerSideProps = (async () => {
 	const json = await res.json();
 	return { props: { json } };
 }) satisfies GetServerSideProps<{
-  json: Json
+  json: TJson
 }>;
 
 export default function Index({

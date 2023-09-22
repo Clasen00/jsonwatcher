@@ -5,7 +5,7 @@ import NestedElement from './components/NestedElement';
 import SimpleElement from './components/SimpleElement';
 import styles from './Watcher.module.css';
 
-export function Watcher() {
+function Watcher() {
 	const json = useAppSelector(selectJson);
 
 	function createSimpleElement(key: string, value: string, type: string) {
@@ -62,3 +62,5 @@ export function Watcher() {
 		</div>
 	);
 }
+
+export default React.memo(Watcher);

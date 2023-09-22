@@ -2,7 +2,7 @@ import { useAppDispatch } from '@/lib/hooks/useAppDispatcher';
 import { setJson } from '@/store/slices/CommonSlice';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import React from 'react';
-import Watcher from '@/pages/components/Watcher/Watcher';
+import Watcher from '../../components/Watcher/Watcher';
 
 type TJson = {
   name: object

@@ -2,8 +2,9 @@ import React, {
 	useRef, useState,
 } from 'react';
 import styles from './SimpleElement.module.css';
-import { getInputByType, getCustomInputType } from './utils/inputType';
 import { useClickOutside } from '@/lib/hooks/useClickOutside';
+import InputWithType from './components/InputWithType';
+import { getInputType } from '@/lib/utils/inputType';
 
 export type TInputType = 'string' | 'number' | 'email' | 'date' | 'boolean' | 'loongtext';
 
@@ -20,28 +21,6 @@ const cssClass = (type: any) => {
 	}
 };
 
-const getInputType = (type: string, value: string): TInputType => {
-	if (type === 'string' && value.length >= 100) {
-		return 'loongtext';
-	}
-
-	if (type === 'number') {
-		return 'number';
-	}
-
-	if (type === 'boolean') {
-		return 'number';
-	}
-
-	const inputType = getCustomInputType(value);
-
-	if (inputType) {
-		return inputType;
-	}
-
-	return type as TInputType;
-};
-
 interface IObjectProps {
   id: string
   type: string
@@ -52,12 +31,12 @@ export default function SimpleElement({ id, type, value }: IObjectProps): React.
 	const [hasInputForEdit, setHasInputForEdit] = useState(false);
 	const [currentValue, setCurrentValue] = useState(value);
 
-	const handleValueClick = () => {
-		setHasInputForEdit(!hasInputForEdit);
-	};
-
 	const handleChange = (valueFromChange: string) => {
 		setCurrentValue(valueFromChange);
+	};
+
+	const showEditor = () => {
+		setHasInputForEdit(true);
 	};
 
 	const hideEditor = () => {
@@ -72,20 +51,14 @@ export default function SimpleElement({ id, type, value }: IObjectProps): React.
 			<div
 				role="button"
 				tabIndex={0}
-				onKeyUp={handleValueClick}
+				onKeyUp={showEditor}
 				className={`${styles.json__value} ${cssClass(type)} ${!hasInputForEdit ? '' : styles.hidden}`}
-				onClick={handleValueClick}
+				onClick={showEditor}
 			>
 				{currentValue}
 			</div>
 			{hasInputForEdit ? (
-				<>
-					{getInputByType({
-						type: getInputType(type, currentValue) as TInputType,
-						value: currentValue,
-						onChange: handleChange,
-					})}
-				</>
+				<InputWithType type={getInputType(type, currentValue) as TInputType} value={currentValue} onChange={handleChange} />
 			) : null}
 		</div>
 	);
